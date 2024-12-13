@@ -1,28 +1,35 @@
 from flask import Flask, request, jsonify
-import openai
+import openai  # Make sure you have OpenAI's library installed or another image generation API
 
+# Initialize Flask app
 app = Flask(__name__)
 
-# Set up OpenAI API key
-openai.api_key = "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"
+# Set your OpenAI API key
+openai.api_key = '5be9a6289f334c2d9687d3d030e1c281'
 
-@app.route("/generate", methods=["POST"])
+# Endpoint to generate image
+@app.route('/generate_image', methods=['POST'])
 def generate_image():
-    data = request.json
-    prompt = data.get("prompt", "")
+    data = request.get_json()
+    prompt = data.get('prompt', '')
+
     if not prompt:
-        return jsonify({"error": "Prompt is required"}), 400
-    
+        return jsonify({'error': 'Prompt is required'}), 400
+
     try:
-        # Call OpenAI or another image generation model
+        # Example with OpenAI's DALL·E model
         response = openai.Image.create(
             prompt=prompt,
             n=1,
-            size="512x512"
+            size="1024x1024"
         )
-        return jsonify({"image_url": response['data'][0]['url']})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        image_url = response['data'][0]['url']
+        return jsonify({'image_url': image_url})
 
-if __name__ == "__main__":
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Run the app
+if __name__ == '__main__':
     app.run(debug=True)
+
