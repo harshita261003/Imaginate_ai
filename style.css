@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url("images/bg.jpg");
+  background: url("images/back.jpeg");
   background-size: cover;
   background-position: center;
 }
@@ -45,6 +45,22 @@
 .image-generator p {
   margin-top: 10px;
   font-size: 1.35rem;
+  white-space: nowrap; /* Keeps the text on a single line */
+  overflow: hidden; /* Hides the overflowing text */
+  position: relative;
+}
+
+.moving-text {
+  animation: slideText 10s linear infinite; /* Apply animation with a slower speed */
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(-100%); /* Start off-screen on the left */
+  }
+  100% {
+    transform: translateX(100%); /* Move off-screen to the right */
+  }
 }
 
 .image-generator .generate-form {
@@ -114,6 +130,10 @@
   justify-content: center;
   margin: 50px auto;
   max-width: 1250px;
+  background: url("images/gly.jpeg"); /* Set the background image */
+  background-size: cover; /* Ensure the background image covers the entire container */
+  background-position: center; /* Position the image centrally */
+  border-radius: 8px;
 }
 
 .image-gallery .img-card {
@@ -121,7 +141,7 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  background: #f2f2f2;
+  background:url("images/gly.jpeg");
   border-radius: 4px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
