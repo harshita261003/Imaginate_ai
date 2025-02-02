@@ -1,0 +1,51 @@
+The error means that **ngrok requires authentication** before you can use it. You need to **sign up for an ngrok account and set up an authentication token**. Follow these steps:
+
+---
+
+### **🔹 Step 1: Sign Up for an ngrok Account**
+1. Go to [ngrok Signup Page](https://dashboard.ngrok.com/signup).
+2. Sign up using **Google/GitHub** or create an account manually.
+3. Once signed in, go to **Your Authtoken**:  
+   - [ngrok Authtoken Page](https://dashboard.ngrok.com/get-started/your-authtoken).
+   - Copy your **Authtoken**.
+
+---
+
+### **🔹 Step 2: Install and Configure ngrok in Google Colab**
+#### **1️⃣ Install `ngrok`**
+Run this in Google Colab:
+```python
+!pip install pyngrok
+```
+
+#### **2️⃣ Authenticate ngrok**
+Replace `YOUR_NGROK_AUTHTOKEN` with the token you copied from the ngrok dashboard:
+```python
+from pyngrok import ngrok
+
+# Add your auth token
+!ngrok authtoken YOUR_NGROK_AUTHTOKEN
+```
+
+#### **3️⃣ Start ngrok**
+```python
+public_url = ngrok.connect(5000)
+print("Public URL:", public_url)
+```
+
+---
+
+### **🔹 Step 3: Update Your VS Code Frontend**
+Once ngrok gives you a **public URL**, update your `script.js` with the new URL:
+```js
+const apiUrl = "https://your-ngrok-id.ngrok.io/generate";  // Replace with the actual public URL
+```
+
+---
+
+### **🔹 Step 4: Run Everything**
+1. **Run all cells in Colab** (including Flask server and ngrok).
+2. **Copy the new ngrok URL** and update `script.js`.
+3. **Open `index.html` in your browser** and test it! 🎨🚀
+
+This should fix the authentication issue. Let me know if you need more help! 😊
