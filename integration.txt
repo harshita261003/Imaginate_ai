@@ -26,7 +26,7 @@ from pyngrok import ngrok
 # Add your auth token
 !ngrok authtoken YOUR_NGROK_AUTHTOKEN
 ```
-
+ngrok config add-authtoken ;;;;;;;2sU0j1RdXzbknpu8JwxzFSC4PkQ_6jEcZd3eBQdSjihXfDqA7''''''
 #### **3️⃣ Start ngrok**
 ```python
 public_url = ngrok.connect(5000)
